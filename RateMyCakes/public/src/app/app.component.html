@@ -1,0 +1,45 @@
+<div id="submitCake-wrapper">
+  <form (submit)='addCake()'>
+    <h3>Submit A Cake To Be Rated:</h3>
+    <table>
+      <tr>
+        <input type="text" name="newCake.baker" [(ngModel)]="newCake.baker" placeholder="Baker Name">
+      </tr>
+      <tr>
+        <input type="text" name="newCake.image" [(ngModel)]="newCake.image" placeholder="Image URL">
+      </tr>
+    </table>
+    <input type="submit" value="Add Cake">
+  </form>
+</div>
+<div id="cakeList-wrapper">
+  <div *ngFor="let cake of cakes, let idx = index" id="cakeBox">
+    <div class="cakeImg">
+      <img (click)="selectCake(cake._id)" src="{{cake.image}}" alt="{{cake.baker}}">
+    </div>
+    <div class="cakeRating">
+      <form (submit)="addRating(idx, cake._id)">
+        <table>
+          <tr>
+            <td>
+              Rate This Cake: <select [(ngModel)]="ratings[idx].stars" name="ratings[idx].stars">
+                <option value="5">5 stars</option>
+                <option value="4">4 stars</option>
+                <option value="3">3 stars</option>
+                <option value="2">2 stars</option>
+                <option value="1">1 star</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <textarea name="ratings[idx].comment" [(ngModel)]="ratings[idx].comment" cols="30" rows="6" placeholder="Type your comment here"></textarea>
+            </td>
+          </tr>
+        </table>
+        <input type="submit" value="Rate!">
+      </form>
+    </div>
+  </div>
+</div>
+<app-cake-detail *ngIf="selectedCake" [cakeToShow]="selectedCake"></app-cake-detail>

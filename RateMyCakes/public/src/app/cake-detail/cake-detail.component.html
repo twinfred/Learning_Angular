@@ -1,0 +1,18 @@
+<div id="cakeInfo-wrapper">
+  <h3>This cake was baked by: {{cakeToShow.baker}}</h3>
+  <h3 *ngIf="cakeToShow.avgRating">Rating: {{cakeToShow.avgRating}}</h3>
+  <h3 *ngIf="!cakeToShow.avgRating">No ratings yet.</h3>
+  <div class="cakeImg">
+    <img src="{{cakeToShow.image}}" alt="{{cakeToShow.baker}}">
+  </div>
+  <div class="cakeReviews">
+    <div class="cakeRatings">
+      <div *ngFor="let rating of cakeToShow.ratings">
+        <p style="font-size: 17px">"{{rating.comment}}"</p>
+        <p style="font-weight: bold" *ngIf="rating.stars == 1">{{rating.stars}} star</p>
+        <p style="font-weight: bold" *ngIf="rating.stars !== 1">{{rating.stars}} stars</p>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
