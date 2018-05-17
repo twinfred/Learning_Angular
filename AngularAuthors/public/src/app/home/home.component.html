@@ -1,0 +1,18 @@
+<h3>Recently Added Authors:</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Author</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let author of authors">
+      <td>{{author.name}}</td>
+      <td>
+        <a [routerLink]="['/edit', author._id]"><button>Edit</button></a>
+        <a (click)="deleteAuthor(author._id)"><button>Delete</button></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
