@@ -14,11 +14,7 @@ export class HttpService {
 
   addAuthor(author){
     console.log("Author:", author);
-    if(author['name'].length < 3){
-      return({error: "Name not long enough"});
-    }else{
-      return this._http.post('/api/authors', author);
-    }
+    return this._http.post('/api/authors', author);
   }
 
   deleteAuthor(author_id){
